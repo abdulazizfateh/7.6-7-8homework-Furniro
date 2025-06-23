@@ -14,7 +14,7 @@ const Product = ({ data }) => {
     }
 
     return (
-        <div className='product_cards grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1 sm:gap-4 md:gap-6 lg:gap-8'>
+        <div className='product_cards grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1.5 sm:gap-2.5 md:gap-3 lg:gap-3.5'>
             {
                 productData?.map(product => (
                     <div onMouseLeave={() => setIsMouseOvered(null)} key={product.id} className='product_card border-[.5px] border-border flex flex-col relative rounded-2xl overflow-hidden'>
