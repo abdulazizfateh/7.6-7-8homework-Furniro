@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Hero = () => {
     const navigate = useNavigate();
     return (
-        <section className='section_hero bg-amber-300 w-full'>
+        <section className='section_hero w-full'>
             <div className="container">
                 <div className='hero_wrapper w-full h-[calc(90dvh-56px)] sm:h-[calc(90dvh-65px)] md:h-[calc(100dvh-70px)] lg:h-[calc(100dvh-85px)] min-h-[380px] sm:min-h-[400px] md:min-h-[550px] xl:min-h-[716px] flex items-center justify-center sm:relative'>
                     <div className='w-[90%] sm:w-[70%] md:w-[60%] lg:w-[643px] lg:min-h-[443px] sm:absolute top-[70%] sm:-translate-y-[70%] sm:right-0 rounded-[10px] bg-white/70 p-6 pt-8 sm:p-8 sm:pt-10 lg:p-10 lg:pt-16'>
