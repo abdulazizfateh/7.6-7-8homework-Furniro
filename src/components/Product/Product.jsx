@@ -17,8 +17,8 @@ const Product = ({ data }) => {
         <div className='product_cards grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1.5 sm:gap-2.5 md:gap-3 lg:gap-3.5'>
             {
                 productData?.map(product => (
-                    <div onMouseLeave={() => setIsMouseOvered(null)} key={product.id} className='product_card border-[.5px] border-border flex flex-col relative rounded-2xl overflow-hidden'>
-                        <div className='bg-white relative'>
+                    <div onMouseLeave={() => setIsMouseOvered(null)} key={product.id} className='product_card border border-border flex flex-col relative rounded-2xl overflow-hidden'>
+                        <div className='bg-white overflow-hidden relative'>
                             <img onMouseOver={() => setIsMouseOvered(product.id)} className='w-full h-[180px] sm:h-[240px] lg:h-[280px] xl:h-[300px] object-cover' src={product.thumbnail} alt="Image Product" />
                             {
                                 product.discountPercentage >= 10 ? <div className='absolute p-1 top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 flex items-center justify-center bg-highlight-red size-8 sm:size-9 lg:size-12 rounded-full'>
