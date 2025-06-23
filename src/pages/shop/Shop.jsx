@@ -1,0 +1,86 @@
+import React, { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom';
+// Get Product
+import { useProduct } from '@/api/hooks/useProduct';
+// CSS
+import "./styles.css";
+// Components
+import Category from '@/components/Category';
+import Product from '@/components/Product/Product';
+import LoadingProduct from '@/components/LoadingProduct';
+// Icons & Images
+import iconNextLink from "@/assets/images/icon-next-link.svg";
+// Antd
+import { Pagination } from 'antd';
+
+const Shop = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+
+  const [skip, setSkip] = useState(1);
+  // Get
+  const { data, isLoading } = useProduct({ limit: 16, skip: (skip - 1) * 16 });
+  const productData = data?.data;
+
+  const handleChange = (page) => {
+    setSkip(page);
+  }
+  useEffect(() => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 400,
+        behavior: 'smooth',
+      });
+    }, 500);
+  }, [skip, productData])
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768); // Change breakpoint if needed
+    };
+
+    handleResize(); // initial check
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return (
+    <>
+      <section className='section_shop h-[316px]'>
+        <div className='h-full flex flex-col items-center justify-center gap-2.5'>
+          <h2 className='font-[P5] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary-text-900'>Shop</h2>
+          <div className='flex items-center gap-1.5'>
+            <Link to={"/"} className='font-[P5] text-sm md:text-base text-primary-text-900'>Home</Link>
+            <img src={iconNextLink} alt="Icon Next" />
+            <span className='font-[P3] text-sm md:text-base text-primary-text-900'>Shop</span>
+          </div>
+        </div>
+      </section>
+      <Category />
+      <div className='container'>
+        <div className='products_wrapper py-8 sm:py-10 md:py-12 lg:py-16'>
+          <Product data={productData} />
+          {
+            isLoading && <LoadingProduct cardPerPage={16} />
+          }
+        </div>
+        <div className='flex items-center justify-center mb-14 md:mb-[70px] lg:mb-[85px]'>
+          <Pagination
+            className='custom-pagination !gap-1 sm:!gap-0'
+            pageSize={16}
+            total={productData?.total}
+            onChange={handleChange}
+            showSizeChanger={false}
+            showLessItems={isMobile}
+            responsive
+          />
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default React.memo(Shop);

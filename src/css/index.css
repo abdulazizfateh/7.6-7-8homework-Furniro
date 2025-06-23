@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: P3;
+    src: url(../assets/fonts/Poppins-Light.ttf);
+}
+
+@font-face {
+    font-family: P4;
+    src: url(../assets/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: P5;
+    src: url(../assets/fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: P6;
+    src: url(../assets/fonts/Poppins-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: P7;
+    src: url(../assets/fonts/Poppins-Bold.ttf);
+}
+
+@theme {
+    /* -- Colors */
+
+    /* Main colors */
+    --color-primary: #B88E2F;
+    --color-secondary: #F9F1E7;
+    --color-primary-bg: #FCF8F3;
+    --color-secondary-bg: #F4F5F7;
+    /* Primary text */
+    --color-primary-text-900: #000;
+    --color-primary-text-700: #333333;
+    --color-primary-text-600: #3A3A3A;
+    /* Secondary text */
+    --color-secondary-text-900: #666666;
+    --color-secondary-text-700: #898989;
+    --color-secondary-text-500: #9F9F9F;
+    --color-secondary-text-300: #B0B0B0;
+    /* Border */
+    --color-border: #D9D9D9;
+    /* Highlight */
+    --color-highlight-red: #E97171;
+    --color-highlight-green: #2EC1AC;
+
+    /* -- Fonts */
+    --font-P4: P4;
+    --font-P5: P5;
+    --font-P6: P6;
+    --font-P7: P7;
+}
+
+.section_hero {
+    background-image: url("../assets/images/hero-image.png");
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    max-width: 1300px;
+    width: 100%;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 640px) {
+    .container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+button,
+a {
+    cursor: pointer;
+}

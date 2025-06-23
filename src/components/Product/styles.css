@@ -1,0 +1,21 @@
+.product_card_actions {
+    animation: cardActions .2s forwards;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes cardActions {
+    0% {
+        transform: translateY(30px) scale(0.4);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
