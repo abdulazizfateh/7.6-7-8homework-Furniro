@@ -5,7 +5,16 @@ import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 // React Query
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-const queryClient = new QueryClient();
+const queryClient = new QueryClient(
+    {
+        defaultOptions: {
+            queries: {
+                staleTime: 1000 * 10,
+                gcTime: 1000 * 5 * 10
+            }
+        }
+    }
+);
 // Redux Toolkit Provider and Store
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
