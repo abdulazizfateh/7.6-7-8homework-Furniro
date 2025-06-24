@@ -5,15 +5,15 @@ import { useProduct } from '@/api/hooks/useProduct';
 // CSS
 import "./styles.css";
 // Components
-import Category from '@/components/Category';
+import Category from '@/components/Category/Category';
 import Product from '@/components/Product/Product';
-import LoadingProduct from '@/components/LoadingProduct';
 // Icons & Images
 import iconNextLink from "@/assets/images/icon-next-link.svg";
 // Antd
 import { Pagination } from 'antd';
 
 const Shop = () => {
+  // Throwing to the top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
@@ -26,6 +26,8 @@ const Shop = () => {
   const handleChange = (page) => {
     setSkip(page);
   }
+  
+  // Smooth Relocation
   useEffect(() => {
     setTimeout(() => {
       window.scrollTo({
@@ -33,16 +35,15 @@ const Shop = () => {
         behavior: 'smooth',
       });
     }, 500);
-  }, [skip, productData])
+  }, [skip])
 
+  // Pagination Responsive for Mobile
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Change breakpoint if needed
+      setIsMobile(window.innerWidth < 768);
     };
-
-    handleResize(); // initial check
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -62,10 +63,7 @@ const Shop = () => {
       <Category />
       <div className='container'>
         <div className='products_wrapper py-8 sm:py-10 md:py-12 lg:py-16'>
-          <Product data={productData} />
-          {
-            isLoading && <LoadingProduct cardPerPage={16} />
-          }
+          <Product data={productData} loading={isLoading} limit={16} />
         </div>
         <div className='flex items-center justify-center mb-14 md:mb-[70px] lg:mb-[85px]'>
           <Pagination

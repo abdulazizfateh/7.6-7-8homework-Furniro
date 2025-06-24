@@ -1,0 +1,3 @@
+.header_nav_link.active {
+    color: var(--color-primary);
+}

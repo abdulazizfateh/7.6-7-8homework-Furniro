@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
+// CSS
+import "./styles.css";
 // Icons & Image
 import iconSearch from "@/assets/images/icon-search.svg";
 import iconUser from "@/assets/images/icon-user.svg";
@@ -15,16 +17,16 @@ const Header = () => {
           <Link to={"/"} className='font-[P7] text-xl sm:text-2xl lg:text-3xl'>Furniro.</Link>
           <ul className='header_nav_links hidden md:flex items-center md:gap-10 lg:gap-14 xl:gap-[75px]'>
             <li>
-              <NavLink className='font-[P5] text-sm lg:text-base text-primary-text-900' to={"/"}>Home</NavLink>
+              <NavLink className='header_nav_link font-[P5] text-sm lg:text-base text-primary-text-900' to={"/"}>Home</NavLink>
             </li>
             <li>
-              <NavLink className='font-[P5] text-sm lg:text-base text-primary-text-900' to={"/shop"}>Shop</NavLink>
+              <NavLink className='header_nav_link font-[P5] text-sm lg:text-base text-primary-text-900' to={"/shop"}>Shop</NavLink>
             </li>
             <li>
-              <NavLink className='font-[P5] text-sm lg:text-base text-primary-text-900' to={"/about"}>About</NavLink>
+              <NavLink className='header_nav_link font-[P5] text-sm lg:text-base text-primary-text-900' to={"/about"}>About</NavLink>
             </li>
             <li>
-              <NavLink className='font-[P5] text-sm lg:text-base text-primary-text-900' to={"/contact"}>Contact</NavLink>
+              <NavLink className='header_nav_link font-[P5] text-sm lg:text-base text-primary-text-900' to={"/contact"}>Contact</NavLink>
             </li>
           </ul>
           <div className='header_nav_actions hidden md:flex items-center gap-6 sm:gap-7 lg:gap-8 xl:gap-11'>
