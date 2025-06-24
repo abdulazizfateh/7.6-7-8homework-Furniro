@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 // CSS
 import "./styles.css";
-// Icons & Image
+// Icons & Images
 import iconSearch from "@/assets/images/icon-search.svg";
 import iconUser from "@/assets/images/icon-user.svg";
 import iconHeart from "@/assets/images/icon-heart.svg";

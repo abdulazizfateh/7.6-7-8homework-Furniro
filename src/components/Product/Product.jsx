@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 // CSS
 import "./styles.css"
 // Icons & Images
@@ -23,8 +24,15 @@ const LoadingProduct = ({ cardPerPage }) => {
 const Product = ({ data, loading, limit }) => {
     const productData = data?.products;
     const [isMouseOvered, setIsMouseOvered] = useState(null);
-    const handleDetail = () => {
-        console.log("Detail");
+    const navigate = useNavigate();
+
+    const handleAddToCart = (product) => {
+    }
+
+    const handleDetail = (id) => {
+        navigate(`/product/${id}`);
+    }
+    const handleToggleWishlist = (product) => {
     }
 
     return (
@@ -55,17 +63,17 @@ const Product = ({ data, loading, limit }) => {
                                 product.id === isMouseOvered &&
                                 <div
                                     className='product_card_actions rounded-2xl z-50 absolute top-0 left-0 w-full h-full bg-primary-text-600/50 backdrop-blur-xs flex flex-col items-center pt-[70%] lg:pt-[90%] xl:pt-[95%] gap-3 sm:gap-4 lg:gap-6'>
-                                    <button className='pointer-events-auto h-7 sm:h-8 md:h-10 lg:h-12 w-[75%] font-[P6] text-xs sm:text-sm lg:text-base text-primary bg-white'>Add to cart</button>
+                                    <button onClick={() => handleAddToCart(product)} className='pointer-events-auto h-7 sm:h-8 md:h-10 lg:h-12 w-[75%] font-[P6] text-xs sm:text-sm lg:text-base text-primary bg-white'>Add to cart</button>
                                     <div className='flex flex-col items-center lg:justify-between lg:flex-col xl:flex-row lg:w-[90%] gap-3 pointer-events-auto'>
                                         <div className='flex items-center gap-1'>
                                             <img src={iconShare} alt="Icon Share" />
                                             <span className='font-[P6] text-xs sm:text-sm lg:text-base text-white'>Share</span>
                                         </div>
-                                        <div onClick={() => handleDetail()} className='flex items-center gap-1'>
+                                        <div onClick={() => handleDetail(product.id)} className='flex items-center gap-1 cursor-pointer'>
                                             <img src={iconCompare} alt="Icon Compare" />
                                             <span className='font-[P6] text-xs sm:text-sm lg:text-base text-white'>Full info</span>
                                         </div>
-                                        <div className='flex items-center gap-1'>
+                                        <div onClick={() => handleToggleWishlist(product)} className='flex items-center gap-1 cursor-pointer'>
                                             <img src={iconLike} alt="Icon Like" />
                                             <span className='font-[P6] text-xs sm:text-sm lg:text-base text-white'>Like</span>
                                         </div>

@@ -1,3 +1,4 @@
+import Header from '@/layout/Header/Header';
 import { SuspenseCustom } from '@/utils/utils';
 import React, { lazy } from 'react'
 // React Router Dom Hook, object like routing
@@ -7,6 +8,11 @@ const Layout = lazy(() => import("./layout/Layout"));
 // Pages with loading lazy, means load data for the page shown only
 const Home = lazy(() => import("./home/Home"));
 const Shop = lazy(() => import("./shop/Shop"));
+const ProductDetail = lazy(() => import("./product-detail/ProductDetail"));
+// Nested Route
+const Description = lazy(() => import("./product-detail/Description"));
+const Additional = lazy(() => import("./product-detail/Additional"));
+const Reviews = lazy(() => import("./product-detail/Reviews"));
 
 const MainRouters = () => {
     return (
@@ -16,7 +22,20 @@ const MainRouters = () => {
                     {
                         path: "/", element: <SuspenseCustom><Layout /></SuspenseCustom>, children: [
                             { path: "/", element: <Home /> },
-                            { path: "/shop", element: <Shop /> }
+                            { path: "/shop", element: <Shop /> },
+                            {
+                                path: "/product/:id", element: <ProductDetail />, children: [
+                                    {
+                                        index: true, element: <Description />,
+                                    },
+                                    {
+                                        path: "additional", element: <Additional />,
+                                    },
+                                    {
+                                        path: "reviews", element: <Reviews />,
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ])

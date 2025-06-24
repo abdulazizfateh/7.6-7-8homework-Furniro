@@ -1,4 +1,5 @@
 import React from 'react'
+// Images
 import imageDining from "@/assets/images/browse-image1.png";
 import imageLiving from "@/assets/images/browse-image2.png";
 import imageBedroom from "@/assets/images/browse-image3.png";

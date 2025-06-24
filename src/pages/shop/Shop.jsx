@@ -26,7 +26,7 @@ const Shop = () => {
   const handleChange = (page) => {
     setSkip(page);
   }
-  
+
   // Smooth Relocation
   useEffect(() => {
     setTimeout(() => {
