@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
 // Get Product
 import { useProduct } from '@/api/hooks/useProduct';
 // CSS
@@ -7,8 +6,7 @@ import "./styles.css";
 // Components
 import Category from '@/components/Category/Category';
 import Product from '@/components/Product/Product';
-// Icons & Images
-import iconNextLink from "@/assets/images/icon-next-link.svg";
+import NavHero from '@/components/NavHero/NavHero';
 // Antd
 import { Pagination } from 'antd';
 
@@ -50,16 +48,7 @@ const Shop = () => {
 
   return (
     <>
-      <section className='section_shop h-[316px]'>
-        <div className='h-full flex flex-col items-center justify-center gap-2.5'>
-          <h2 className='font-[P5] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-primary-text-900'>Shop</h2>
-          <div className='flex items-center gap-1.5'>
-            <Link to={"/"} className='font-[P5] text-sm md:text-base text-primary-text-900'>Home</Link>
-            <img src={iconNextLink} alt="Icon Next" />
-            <span className='font-[P3] text-sm md:text-base text-primary-text-900'>Shop</span>
-          </div>
-        </div>
-      </section>
+      <NavHero page={"Shop"} />
       <Category />
       <div className='container'>
         <div className='products_wrapper py-8 sm:py-10 md:py-12 lg:py-16'>

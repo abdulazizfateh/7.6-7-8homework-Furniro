@@ -15,8 +15,8 @@ const Home = () => {
 
   return (
     <>
-      <Hero />
-      <Browse />
+      {/* <Hero /> */}
+      {/* <Browse /> */}
       <section className='section_products'>
         <div className='container'>
           <div className='products_wrapper py-9 sm:py-10 md:pt-11 md:pb-14 lg:pt-14 lg:pb-[68px]'>

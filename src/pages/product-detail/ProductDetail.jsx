@@ -35,7 +35,7 @@ const ProductDetail = () => {
     setMainImage(index);
   }
   useEffect(() => {
-    setMainImage(0)
+    setMainImage(0);
   }, [productData])
 
   return (
@@ -62,6 +62,11 @@ const ProductDetail = () => {
       <section className='section_product_detail'>
         <div className="container">
           <div className="product_detail_wrapper">
+
+
+
+
+
             <div className='product_detail_main grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 xl:gap-12 pt-6 pb-8 md:pt-8 md:pb-10 lg:pt-9 lg:pb-14'>
               <div className='product_detail_images grid grid-cols-1 lg:grid-cols-[0.76fr_4.23fr] gap-5 md:gap-7'>
                 <div className='flex items-center lg:items-start order-2 lg:order-1 lg:flex-col gap-4 md:gap-5 lg:gap-6 '>
@@ -160,6 +165,12 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
+
+
+
+
+
+
         <div className='product_detail_additional_info border-y border-border '>
           <div className='container'>
             <div className='product_detail_additional_info_wrapper pt-6 pb-9 sm:pt-8 sm:pb-10 md:pt-9 md:pb-12 lg:pt-12 lg:pb-16 flex flex-col gap-5 md:gap-7 lg:gap-9'>
@@ -186,7 +197,7 @@ const ProductDetail = () => {
           <div className="container">
             <div className="product_detail_related_wrapper pt-8 pb-12 sm:pt-9 sm:pb-16 md:pt-11 md:pb-20 lg:pt-14 lg:pb-[92px]">
               <h3 className='font-[P5] text-center text-2xl md:text-3xl lg:text-4xl mb-4 md:mb-5 lg:mb-[26px]'>Related Products</h3>
-              <Product data={relatedProductData} loading={isRelatedProductLoading} limit={4} />
+              <Product data={relatedProductData} loading={isRelatedProductLoading} limit={4} id={id} />
             </div>
           </div>
         </div>
