@@ -1,6 +1,6 @@
 .custom-pagination .ant-pagination-item {
     border-radius: 8px !important;
-    background-color: var(--color-secondary);
+    background-color: var(--color-secondary-bg);
     border: none !important;
     margin-inline: 8px;
     width: 35px;
@@ -28,7 +28,7 @@
 .custom-pagination .ant-pagination-next,
 .custom-pagination .ant-pagination-prev {
     border-radius: 8px !important;
-    background-color: var(--color-secondary);
+    background-color: var(--color-secondary-bg);
     border: none !important;
     width: 35px;
     height: 35px !important;
@@ -41,8 +41,8 @@
 
 @media (min-width: 640px) {
     .custom-pagination .ant-pagination-item {
-        width: 38px;
-        height: 38px !important;
+        width: 36px;
+        height: 36px !important;
         font-size: 16px;
     }
 
@@ -50,21 +50,5 @@
     .custom-pagination .ant-pagination-prev {
         width: 34px;
         height: 34px !important;
-    }
-}
-
-@media (min-width: 1024px) {
-    .custom-pagination .ant-pagination-item {
-        border-radius: 10px !important;
-        width: 48px;
-        height: 48px !important;
-        font-size: 18px;
-    }
-
-    .custom-pagination .ant-pagination-next,
-    .custom-pagination .ant-pagination-prev {
-        border-radius: 10px !important;
-        width: 48px;
-        height: 48px !important;
     }
 }

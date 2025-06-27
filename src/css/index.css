@@ -43,7 +43,7 @@
     --color-secondary-text-500: #9F9F9F;
     --color-secondary-text-300: #B0B0B0;
     /* Border */
-    --color-border: #D9D9D9;
+    --color-border: #EEEEEC;
     /* Highlight */
     --color-highlight-red: #E97171;
     --color-highlight-green: #2EC1AC;
@@ -55,20 +55,15 @@
     --font-P7: P7;
 }
 
-.section_hero {
-    background-image: url("../assets/images/hero-image.png");
-    background-size: cover;
-    background-position: center;
-}
-
 .container {
-    max-width: 1300px;
+    max-width: 1440px;
     width: 100%;
     padding-left: 12px;
     padding-right: 12px;
     margin-left: auto;
     margin-right: auto;
 }
+
 
 @media (min-width: 640px) {
     .container {
@@ -94,4 +89,28 @@
 button,
 a {
     cursor: pointer;
+}
+
+.title {
+    font-family: var(--font-P5);
+    color: var(--color-primary-text-700);
+    font-size: 20px;
+}
+
+@media (min-width: 640px) {
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 768px) {
+    .title {
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .title {
+        font-size: 32px;
+    }
 }

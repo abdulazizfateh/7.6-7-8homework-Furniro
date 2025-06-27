@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // Components
 import Hero from '@/components/Hero/Hero';
 import Browse from '@/components/Browse/Browse';
@@ -9,7 +9,10 @@ import { useProduct } from '@/api/hooks/useProduct';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  const { data, isLoading } = useProduct({ limit: 8, skip: 42 });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
+  const { data, isLoading } = useProduct({ limit: 10, skip: 42 });
   const productData = data?.data;
   const navigate = useNavigate();
 
@@ -20,13 +23,13 @@ const Home = () => {
       <section className='section_products'>
         <div className='container'>
           <div className='products_wrapper py-9 sm:py-10 md:pt-11 md:pb-14 lg:pt-14 lg:pb-[68px]'>
-            <div className='mb-5 sm:mb-6 md:mb-7 lg:mb-8'>
-              <h2 className='font-[P7] text-primary-text-600 text-2xl sm:text-[28px] md:text-3xl lg:text-[40px] text-center'>Our Products</h2>
+            <div className='mb-3 sm:mb-4 md:mb-5 lg:mb-6'>
+              <h2 className='title text-center'>Our Products</h2>
             </div>
             <Product data={productData} loading={isLoading} limit={8} />
             <div className='flex items-center justify-center mt-5 sm:mt-6 md:mt-8 lg:mt-[44px]'>
-              <button onClick={() => navigate("/shop")} className='h-7 sm:h-8 md:h-9 lg:h-12 px-12 sm:px-[60px] md:px-[70px] lg:px-[82px] bg-white border border-primary'>
-                <span className='font-[P6] text-sm md:text-base text-primary capitalize'>Show more</span>
+              <button onClick={() => navigate("/shop")} className='rounded-lg border border-primary h-8 sm:h-10 md:h-11 px-4 md:px-6'>
+                <span className='font-[P4] text-primary text-sm md:text-base'>Show more</span>
               </button>
             </div>
           </div>

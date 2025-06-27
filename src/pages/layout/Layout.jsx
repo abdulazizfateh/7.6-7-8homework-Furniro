@@ -11,7 +11,7 @@ const Layout = () => {
     return (
         <>
             <Header />
-            <main className='site_main mt-14 sm:mt-[65px] md:mt-[70px] lg:mt-[85px]'>
+            <main className='site_main mt-20 sm:mt-[90px] md:mt-[100px]'>
                 <SuspenseCustom><Outlet /></SuspenseCustom>
             </main>
             <Footer />

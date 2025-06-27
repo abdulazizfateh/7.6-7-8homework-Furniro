@@ -10,7 +10,7 @@ const Description = () => {
   const productData = data?.data;
 
   return (
-    <div className='w-[90%] sm:w-[85%] mx-auto font-[P4] text-secondary-text-500 text-sm md:text-base flex flex-col gap-5 md:gap-6 lg:gap-[30px]'>
+    <div className='w-[90%] sm:w-[85%] mx-auto font-[P4] text-secondary-text-500 text-xs md:text-sm flex flex-col gap-5 md:gap-6 lg:gap-[30px]'>
       <p>
         {productData?.description}
       </p>

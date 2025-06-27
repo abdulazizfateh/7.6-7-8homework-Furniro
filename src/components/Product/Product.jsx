@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-// CSS
-import "./styles.css"
 // Icons & Images
-import iconCompare from "@/assets/images/icon-compare.svg";
-import iconDelete from "@/assets/images/icon-delete.svg";
-import { HeartOutlined, HeartFilled, InfoCircleOutlined, DeleteFilled } from "@ant-design/icons"
+import { HeartOutlined, HeartFilled, PlusOutlined, MinusOutlined } from "@ant-design/icons"
 // Redux
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart } from '@/redux/features/cart.slice';
+import { addToCart, increaseQuantity, decreaseQuantity } from '@/redux/features/cart.slice';
 import { toggleToWishlist } from '@/redux/features/wishlist.slice';
 
 // Loading for Product Cards 
@@ -17,7 +13,7 @@ const LoadingProduct = ({ cardPerPage }) => {
 
     return (
         arr.map((_, index) => (
-            <div key={index} className='rounded-2xl overflow-hidden border border-[#eee]'>
+            <div key={index} className='rounded-xl overflow-hidden border border-[#eee]'>
                 <div className='h-[180px] sm:h-[240px] lg:h-[280px] xl:h-[300px] bg-white'></div>
                 <div className='h-[100px] sm:h-[124px] md:h-[132px] lg:h-[166px] bg-secondary-bg'></div>
             </div>
@@ -25,7 +21,7 @@ const LoadingProduct = ({ cardPerPage }) => {
     )
 }
 
-const Product = ({ data, loading, limit: cardPerPage, id }) => {
+const Product = ({ data, loading, limit: cardPerPage }) => {
     // Dispatch
     const dispatch = useDispatch();
     // Use Selector
@@ -33,25 +29,15 @@ const Product = ({ data, loading, limit: cardPerPage, id }) => {
     const wishlistData = useSelector(state => state.wishlistSlice.wishlist);
 
     const productData = data?.products;
-    const [isMouseOvered, setIsMouseOvered] = useState(null);
     const navigate = useNavigate();
 
     const handleMouseOver = (id) => {
         setIsMouseOvered(id);
     }
 
-    useEffect(() => {
-        setIsMouseOvered(false);
-    }, [id])
-
     // Add to Cart
     const handleAddToCart = (product) => {
         dispatch(addToCart(product));
-    }
-
-    // Remove from cart
-    const handleRemoveFromCart = (id) => {
-        dispatch(removeFromCart(id));
     }
 
     const handleDetail = (id) => {
@@ -60,82 +46,54 @@ const Product = ({ data, loading, limit: cardPerPage, id }) => {
     const handleToggleWishlist = (product) => {
         dispatch(toggleToWishlist(product));
     }
-    console.log(wishlistData);
 
 
     return (
-        <div className='product_cards grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-1.5 sm:gap-2.5 md:gap-3 lg:gap-3.5'>
+        <div className='product_cards grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-1.5 sm:gap-2.5 md:gap-3 lg:gap-3.5'>
             {
                 loading
                     ?
                     <LoadingProduct cardPerPage={cardPerPage} />
                     :
                     productData?.map(product => (
-                        <div onMouseLeave={() => setIsMouseOvered(null)} key={product.id} className='product_card border border-[#eee] flex flex-col relative rounded-2xl overflow-hidden'>
+                        <div key={product.id} className='product_card group border border-[#eee] flex flex-col relative rounded-xl overflow-hidden'>
                             <div className='bg-white overflow-hidden relative'>
-                                <img onMouseOver={() => handleMouseOver(product.id)} className='w-full h-[180px] sm:h-[240px] lg:h-[280px] xl:h-[300px] object-cover' src={product.thumbnail} alt="Image Product" />
+                                <img onClick={() => handleDetail(product.id)} className='select-none cursor-pointer group-hover:scale-105 duration-300 ease-out w-full h-[180px] sm:h-[240px] lg:h-[280px] xl:h-[300px] object-cover' src={product.thumbnail} alt="Image Product" />
                                 {
-                                    product.discountPercentage >= 10 ? <div className='absolute p-1 top-4 right-4 sm:top-5 sm:right-5 lg:top-6 lg:right-6 flex items-center justify-center bg-highlight-red size-8 sm:size-9 lg:size-12 rounded-full'>
-                                        <span className='text-white font-[P5] text-xs sm:text-sm lg:text-base'>-{product.discountPercentage.toFixed(0)}%</span>
+                                    product.discountPercentage >= 10 ? <div className='absolute p-1 top-2 left-2 sm:top-3.5 sm:left-3.5 lg:top-4 lg:left-4 flex items-center justify-center bg-highlight-red size-7 sm:size-8 lg:size-10 rounded-full'>
+                                        <span className='text-white font-[P4] text-xs md:text-sm'>-{product.discountPercentage.toFixed(0)}%</span>
                                     </div> : <></>
                                 }
-                            </div>
-                            <div className='p-2 sm:p-3 lg:p-4 pb-4 sm:pb-5 md:pb-6 lg:pb-[30px] bg-secondary-bg flex-1 flex flex-col gap-1.5 md:gap-2'>
-                                <h4 className='font-[P6] line-clamp-1 text-primary-text-600 text-xs sm:text-sm lg:text-lg'>{product.title}</h4>
-                                <p className='font-[P5] line-clamp-2 text-secondary-text-700 text-xs sm:text-sm lg:text-base'>{product.description}</p>
-                                <div className='flex-1 flex items-end justify-between'>
-                                    <p className='font-[P6] text-primary-text-600 text-xs sm:text-sm lg:text-lg'>${product.price}<span></span></p>
-                                    <div className='flex items-center gap-2'>
-                                        {
-                                            cartData.some(item => item.id === product.id) ? <DeleteFilled onClick={() => handleRemoveFromCart(product.id)} className='cursor-pointer text-4 md:text-lg font-[P6] !text-primary' /> : <></>
-                                        }
-                                        {
-                                            wishlistData.some(item => item.id === product.id)
-                                                ?
-                                                <HeartFilled onClick={() => handleToggleWishlist(product)} className='!text-primary cursor-pointer text-4 md:text-lg' />
-                                                :
-                                                <HeartOutlined onClick={() => handleToggleWishlist(product)} className='!text-primary cursor-pointer text-4 md:text-lg' />
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                            {
-                                product.id === isMouseOvered &&
-                                <div
-                                    className='product_card_actions rounded-2xl z-50 absolute top-0 left-0 w-full h-full bg-primary-text-600/50 backdrop-blur-xs flex flex-col items-center pt-[70%] lg:pt-[90%] xl:pt-[95%] gap-3 sm:gap-4 lg:gap-6'>
+                                <div className='absolute p-1 top-2 right-2 sm:top-3.5 sm:right-3.5 lg:top-4 lg:right-4 duration-75 ease-out'>
                                     {
-                                        cartData.some(item => item.id === product.id)
+                                        wishlistData.some(item => item.id === product.id)
                                             ?
-                                            <button onClick={() => handleRemoveFromCart(product.id)} className='pointer-events-auto h-7 sm:h-8 md:h-10 lg:h-12 w-[75%] font-[P6] text-xs sm:text-sm lg:text-base text-white bg-primary'>
-                                                Remove from cart
-                                            </button>
+                                            <HeartFilled onClick={() => handleToggleWishlist(product)} className='!text-primary cursor-pointer text-4 md:text-lg' />
                                             :
-                                            <button onClick={() => handleAddToCart(product)} className='pointer-events-auto h-7 sm:h-8 md:h-10 lg:h-12 w-[75%] font-[P6] text-xs sm:text-sm lg:text-base text-primary bg-white'>
-                                                Add to cart
-                                            </button>
+                                            <HeartOutlined onClick={() => handleToggleWishlist(product)} className='!text-primary cursor-pointer text-4 md:text-lg' />
                                     }
-                                    <div className='flex flex-col items-center lg:justify-between lg:flex-col xl:flex-row lg:w-[90%] gap-3 pointer-events-auto'>
-                                        <div className='flex items-center gap-1'>
-                                            <img src={iconCompare} alt="Icon Share" />
-                                            <span className='font-[P6] text-xs sm:text-sm lg:text-base text-white'>Compare</span>
-                                        </div>
-                                        <div onClick={() => handleDetail(product.id)} className='flex items-center gap-1 cursor-pointer'>
-                                            <InfoCircleOutlined className='!text-white' />
-                                            <span className='font-[P6] text-xs sm:text-sm lg:text-base text-white'>Full info</span>
-                                        </div>
-                                        <div onClick={() => handleToggleWishlist(product)} className='flex items-center gap-1 cursor-pointer'>
-                                            {
-                                                wishlistData.some(item => item.id === product.id)
-                                                    ?
-                                                    <HeartFilled className='!text-white' />
-                                                    :
-                                                    <HeartOutlined className='!text-white' />
-                                            }
-                                            <span className='font-[P6] text-xs sm:text-sm lg:text-base text-white'>Like</span>
-                                        </div>
-                                    </div>
                                 </div>
-                            }
+                            </div>
+                            <div className='p-2 sm:p-3 lg:p-4 bg-secondary-bg flex-1 flex flex-col gap-1.5 md:gap-2'>
+                                <h4 onClick={() => handleDetail(product.id)} className='font-[P5] line-clamp-1 text-primary-text-600 text-sm md:text-base duration-200 cursor-pointer hover:text-primary-text-900'>{product.title}</h4>
+                                <p className='font-[P4] line-clamp-2 text-secondary-text-700 text-xs md:text-sm'>{product.description}</p>
+                                <div className='flex-1 flex items-end justify-between mb-1.5 lg:mb-2.5'>
+                                    <p className='font-[P5] text-primary-text-600 text-sm md:text-base'>${product.price}<span></span></p>
+                                </div>
+                                {
+                                    cartData.some(item => item.id === product.id)
+                                        ?
+                                        <div className='h-9 bg-white w-full rounded-md flex items-center gap-3 justify-between py-1 px-2'>
+                                            <MinusOutlined onClick={() => dispatch(decreaseQuantity(product))} className='px-1.5 cursor-pointer rounded-md h-full bg-secondary-bg select-none' />
+                                            <span className='text-primary-text-900 select-none'>{cartData.filter(item => item.id === product.id)[0].quantity}</span>
+                                            <PlusOutlined onClick={() => dispatch(increaseQuantity(product))} className='px-1.5 cursor-pointer rounded-md h-full bg-secondary-bg select-none' />
+                                        </div>
+                                        :
+                                        <button onClick={() => handleAddToCart(product)} className='h-9 bg-primary w-full rounded-md'>
+                                            <span className='font-[P4] text-sm md:text-base text-white select-none'>Add to cart</span>
+                                        </button>
+                                }
+                            </div>
                         </div>
                     ))
             }

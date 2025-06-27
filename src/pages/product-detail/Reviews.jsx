@@ -12,10 +12,10 @@ const Reviews = () => {
   const productReviewData = data?.data?.reviews;
 
   return (
-    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4'>
+    <div className='flex justify-center flex-wrap gap-2 md:gap-3'>
       {
         productReviewData?.map((review, index) => (
-          <div key={index} className='border border-border rounded-2xl p-4 font-[P4] text-sm md:text-base'>
+          <div key={index} className='border border-border rounded-2xl p-4 font-[P4] text-xs md:text-sm'>
             <div className='flex items-center gap-1 md:gap-1.5 mb-2 md:mb-3'>
               {
                 new Array(review?.rating).fill("").map((_, index) => (
