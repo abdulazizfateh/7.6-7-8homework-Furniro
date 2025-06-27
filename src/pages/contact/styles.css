@@ -1,0 +1,15 @@
+.ant-radio-inner {
+    border-color: var(--color-secondary-text-500) !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.ant-radio-checked .ant-radio-inner {
+    background-color: var(--color-primary-text-900) !important;
+    border-color: var(--color-primary-text-900) !important;
+}
+
+.ant-radio-checked .ant-radio-inner:after {
+    background-color: var(--color-primary-text-900) !important;
+    transform: scale(0.7) !important;
+}

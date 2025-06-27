@@ -14,7 +14,7 @@ const Wishlist = () => {
     return (
         <section className='section_wishlist'>
             <div className='container'>
-                <div className={`wishlist_wrapper min-h-[calc(80dvh-56px)] sm:min-h-[calc(80dvh-65px)] md:min-h-[calc(80dvh-70px)] lg:min-h-[calc(80dvh-85px)] py-7 sm:py-9 md:pt-8 md:pb-14 lg:pt-10 lg:pb-24 ${wishlistData.length ? "" : "flex items-center justify-center"}`}>
+                <div className={`wishlist_wrapper min-h-[calc(100dvh-56px)] sm:min-h-[calc(100dvh-65px)] md:min-h-[calc(100dvh-70px)] lg:min-h-[calc(100dvh-85px)] ${wishlistData.length ? "" : "flex items-center justify-center"}`}>
                     {
                         wishlistData.length
                             ?

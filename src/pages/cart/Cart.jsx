@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 // Icons 
-import iconDelete from "@/assets/images/icon-delete.svg";
+import { DeleteOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 // Redux
 import { useDispatch, useSelector } from 'react-redux'
 import { decreaseQuantity, increaseQuantity, removeFromCart } from '@/redux/features/cart.slice';
@@ -38,7 +38,7 @@ const Cart = () => {
         <>
             <section className='section_cart'>
                 <div className='container'>
-                    <div className='cart_wrapper min-h-[calc(80dvh-56px)] sm:min-h-[calc(80dvh-65px)] md:min-h-[calc(80dvh-70px)] lg:min-h-[calc(80dvh-85px)] grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 md:gap-6 lg:gap-7 py-10 lg:pb-[85px]'>
+                    <div className='cart_wrapper min-h-[calc(100dvh-56px)] relative sm:min-h-[calc(100dvh-65px)] md:min-h-[calc(100dvh-70px)] lg:min-h-[calc(100dvh-85px)] grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 md:gap-6 lg:gap-7 py-10 lg:pb-[85px]'>
                         <div className='cart_products'>
                             <div className='grid grid-cols-1 gap-4 md:gap-5 lg:gap-6 font-[P4] text-secondary-text-700 text-sm md:text-base'>
                                 {
@@ -47,27 +47,33 @@ const Cart = () => {
                                         <Link to={"/shop"} className='text-primary-text-900'>Back to Shop</Link>
                                     </div> :
                                         cartData.map(product => (
-                                            <div key={product.id} className='flex items-center'>
-                                                <div className='flex items-center gap-4 pr-3 w-[340px]'>
-                                                    <div className='size-[105px] rounded-[10px] bg-[#B88E2F38]'>
+                                            <div key={product.id} className='flex items-center justify-between gap-20 border border-border p-4 rounded-[10px]'>
+                                                <div onClick={() => navigate(`/product/${product.id}`)} className='cursor-pointer flex items-center gap-4 pr-3 flex-1'>
+                                                    <div className='size-[80px] rounded-[10px] border border-border'>
                                                         <img className='h-full w-full object-contain' src={product.thumbnail} alt={product.title} />
                                                     </div>
                                                     <p className=''>{product.title}</p>
                                                 </div>
-                                                <p className='w-[150px]'>${product.price}</p>
-                                                <div className='w-[130px] flex items-center gap-3'>
-                                                    <button disabled={product.quantity <= 1} onClick={() => handleDecreaseProductQuantity(product)} className='cursor-pointer font-[P5] disabled:text-secondary-text-300'>-</button>
-                                                    <p className='text-primary-text-900'>{product.quantity}</p>
-                                                    <button onClick={() => handleIncreaseProductQuantity(product)} className='cursor-pointer font-[P5]'>+</button>
+                                                <p className='select-none'>${product.price}</p>
+                                                <div className='flex items-center justify-between'>
+                                                    <button disabled={product.quantity <= 1} onClick={() => handleDecreaseProductQuantity(product)} className='cursor-pointer'>
+                                                        <MinusOutlined className={`select-none ${product.quantity === 1 ? "!text-secondary-text-300" : "!text-primary-text-900"}`} />
+                                                    </button>
+                                                    <div className='w-8'>
+                                                        <p className='font-[P5] text-primary-text-900 text-center select-none'>{product.quantity}</p>
+                                                    </div>
+                                                    <button onClick={() => handleIncreaseProductQuantity(product)} className='cursor-pointer'>
+                                                        <PlusOutlined className='select-none !text-primary-text-900' />
+                                                    </button>
                                                 </div>
-                                                <p className='w-[140px] text-primary-text-900'>${(product.quantity * product.price).toFixed(2)}</p>
-                                                <img onClick={() => handleRemoveFromCart(product.id)} className='w-5 md:w-6 cursor-pointer' src={iconDelete} alt="Icon Delete" />
+                                                <p className='text-primary-text-900 select-none w-14'>${(product.quantity * product.price).toFixed(2)}</p>
+                                                <DeleteOutlined onClick={() => handleRemoveFromCart(product.id)} className='text-5 md:text-7 cursor-pointer !text-primary-text-900' />
                                             </div>
                                         ))
                                 }
                             </div>
                         </div>
-                        <div className='cart_calc_total self-start bg-secondary p-4 h-76 rounded-[10px] px-6'>
+                        <div className='cart_calc_total self-start sticky top-[30px] bg-secondary p-4 min-h-76 rounded-[10px] px-6'>
                             <p className='font-[P6] text-center text-primary-text-900 text-[22px] sm:text-[24px] md:text-[26px] lg:text-[32px] mb-8 sm:mb-10 lg:mb-14'>Cart Totals</p>
                             <div className='flex flex-col gap-2 mb-[22px]'>
                                 {

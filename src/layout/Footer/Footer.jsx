@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className='site_footer border-t border-[#eeeeec]'>
+    <footer className='site_footer border-t border-border'>
       <div className='container'>
         <div className='footer_wrapper'>
           <div className='footer_main border-b border-border py-6 sm:py-7 md:py-8 lg:py-9 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[2.85fr_1.4fr_1.4fr_2.85fr] gap-8 sm:gap-14 lg:gap-24 xl:gap-28'>

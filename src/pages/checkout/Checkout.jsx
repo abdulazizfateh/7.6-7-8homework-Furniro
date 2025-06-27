@@ -67,14 +67,14 @@ const Checkout = () => {
                                         name="firstName"
                                         rules={[{ required: true, message: 'Please input your first name!' }]}
                                     >
-                                        <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-14 !border !border-secondary-text-500 !rounded-[10px]' />
+                                        <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-12 !border !border-secondary-text-500 !rounded-[10px]' />
                                     </Form.Item>
                                     <Form.Item className='w-full'
                                         label={<span className='font-[P5] text-primary-text-900 text-sm md:text-base'>Last Name</span>}
                                         name="lastName"
                                         rules={[{ required: true, message: 'Please input your last name!' }]}
                                     >
-                                        <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-14 !border !border-secondary-text-500 !rounded-[10px]' />
+                                        <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-12 !border !border-secondary-text-500 !rounded-[10px]' />
                                     </Form.Item>
                                 </div>
                                 <Form.Item
@@ -82,28 +82,28 @@ const Checkout = () => {
                                     name="streetAddress"
                                     rules={[{ required: true, message: 'Please input your street address!' }]}
                                 >
-                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-14 !border !border-secondary-text-500 !rounded-[10px]' />
+                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-12 !border !border-secondary-text-500 !rounded-[10px]' />
                                 </Form.Item>
                                 <Form.Item
                                     label={<span className='font-[P5] text-primary-text-900 text-sm md:text-base'>Town / City</span>}
                                     name="city"
                                     rules={[{ required: true, message: 'Please input your town / city!' }]}
                                 >
-                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-14 !border !border-secondary-text-500 !rounded-[10px]' />
+                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-12 !border !border-secondary-text-500 !rounded-[10px]' />
                                 </Form.Item>
                                 <Form.Item
                                     label={<span className='font-[P5] text-primary-text-900 text-sm md:text-base'>Zipcode</span>}
                                     name="zipcode"
                                     rules={[{ required: true, message: 'Please input your zipcode!' }]}
                                 >
-                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-14 !border !border-secondary-text-500 !rounded-[10px]' />
+                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-12 !border !border-secondary-text-500 !rounded-[10px]' />
                                 </Form.Item>
                                 <Form.Item
                                     label={<span className='font-[P5] text-primary-text-900 text-sm md:text-base'>Phone Number</span>}
                                     name="phoneNumber"
                                     rules={[{ required: true, message: 'Please input your phone number!' }]}
                                 >
-                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-14 !border !border-secondary-text-500 !rounded-[10px]' />
+                                    <Input className='!font-[P4] !text-primary-text-900 !text-sm md:!text-base !h-12 !border !border-secondary-text-500 !rounded-[10px]' />
                                 </Form.Item>
                             </Form>
                         </div>
@@ -166,7 +166,7 @@ const Checkout = () => {
                                     <p className='font-[P3] text-sm md:text-base text-primary-text-900'>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <span className='font-[P6]'>privacy policy.</span></p>
                                 </div>
                                 <div className='flex items-center justify-center'>
-                                    <button onClick={() => form.submit()} className='border border-primary-text-900 rounded-[15px] h-10 md:h-12 lg:h-16 w-[55%]'>
+                                    <button onClick={() => form.submit()} className='border border-primary-text-900 rounded-[15px] h-8 md:h-10 lg:h-12 w-[55%]'>
                                         <span className='font-[P4] text-sm sm:text-base lg:text-xl text-primary-text-900'>Place order</span>
                                     </button>
                                 </div>

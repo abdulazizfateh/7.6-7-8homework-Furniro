@@ -12,6 +12,8 @@ const ProductDetail = lazy(() => import("./product-detail/ProductDetail"));
 const Cart = lazy(() => import("./cart/Cart"));
 const Wishlist = lazy(() => import("./wishlist/Wishlist"));
 const Checkout = lazy(() => import("./checkout/Checkout"));
+const Blog = lazy(() => import("./blog/Blog"));
+const Contact = lazy(() => import("./contact/Contact"));
 
 // Nested Route
 const Description = lazy(() => import("./product-detail/Description"));
@@ -42,7 +44,9 @@ const MainRouters = () => {
                             },
                             { path: "/cart", element: <Cart /> },
                             { path: "/wishlist", element: <Wishlist /> },
-                            { path: "/checkout", element: <Checkout /> }
+                            { path: "/checkout", element: <Checkout /> },
+                            { path: "/blog", element: <Blog /> },
+                            { path: "/contact", element: <Contact /> }
                         ]
                     }
                 ])
